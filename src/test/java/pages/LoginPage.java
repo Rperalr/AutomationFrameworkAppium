@@ -22,7 +22,7 @@ public class LoginPage {
     private By usernameField = By.id("com.sourcey.materialloginexample:id/input_email");
     private By passwordField = By.id("com.sourcey.materialloginexample:id/input_password");
     private By loginButton = By.id("com.sourcey.materialloginexample:id/btn_login");
-    private By labelAccout = By.id("com.sourcey.materialloginexample:id/link_signup");
+    public By labelAccout = By.id("com.sourcey.materialloginexample:id/link_signup");
 
 
 

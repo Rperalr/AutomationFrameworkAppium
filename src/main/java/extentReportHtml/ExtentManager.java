@@ -2,27 +2,36 @@ package extentReportHtml;
 
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExtentManager extends ExtentManagerInstance {
 
-    /**
-     * Retrieves the singleton instance of the ExtentReports object. If the instance
-     * does not already exist, it initializes a new ExtentReports object with an
-     * ExtentHtmlReporter configured for generating HTML reports.
-     *
-     * @return The singleton instance of ExtentReports.
-     */
-    public static ExtentReports getExtent() {
-        if (extent == null) {
-            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(PATH_REPORT + NAME_REPORT + TIME_STAMP + EXT_REPORT);
-            htmlReporter.config().setTheme(Theme.DARK);
-            htmlReporter.config().setReportName("Automation Test Regresion");
-            htmlReporter.config().setLevel();
-            extent = new ExtentReports();
-            extent.attachReporter(htmlReporter);
+        public static String TIME_STAMP = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
+        public static String PATH_REPORT = "./evidences/ExternRepotHTML/";
+        public static String NAME_REPORT = "ExtentReport_";
+        public static String EXT_REPORT = ".html";
+
+        public static ExtentReports getExtent() {
+
+            if (extent == null) {
+
+                String reportPath = PATH_REPORT + NAME_REPORT + TIME_STAMP + EXT_REPORT;
+
+                ExtentSparkReporter sparkReporter =
+                        new ExtentSparkReporter(reportPath);
+
+                sparkReporter.config().setReportName("Automation Test Regression");
+                sparkReporter.config().setDocumentTitle("Execution Report");
+                sparkReporter.config().setTheme(Theme.DARK);
+
+                extent = new ExtentReports();
+                extent.attachReporter(sparkReporter);
+            }
+
+            return extent;
         }
-        return extent;
     }
-}
