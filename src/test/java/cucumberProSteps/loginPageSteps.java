@@ -5,32 +5,32 @@ import org.openqa.selenium.By;
 
 public class loginPageSteps {
 
-    private AppiumDriver driver;
+    //🔍 Driver
+    public AppiumDriver driver;
 
     // 🔍 Constructor
-     loginPageSteps(AppiumDriver driver) {
+    public loginPageSteps(AppiumDriver driver) {
         this.driver = driver;
     }
 
-        private By usernameField = By.id("com.sourcey.materialloginexample:id/input_email");
-        private By passwordField = By.id("com.sourcey.materialloginexample:id/input_password");
-        private By loginButton = By.id("com.sourcey.materialloginexample:id/btn_login");
-        private By labelAccout = By.id("com.sourcey.materialloginexample:id/link_signup");
+    // 🔍 Locators (ejemplo)
+    private By usernameField = By.id("com.sourcey.materialloginexample:id/input_email");
+    private By passwordField = By.id("com.sourcey.materialloginexample:id/input_password");
+    private By loginButton = By.id("com.sourcey.materialloginexample:id/btn_login");
+    public By labelAccout = By.id("com.sourcey.materialloginexample:id/link_signup");
 
 
+
+    // ⚙️ Actions
     public void enterUsername(String username) {
-            driver.findElement(usernameField).sendKeys(username);
-        }
-
-        public void enterPassword(String password) {
-            driver.findElement(passwordField).sendKeys(password);
-        }
-
-        public void tapLogin() {
-            driver.findElement(loginButton).click();
-        }
-
-        public boolean isAccountLabelVisible() {
-            return driver.findElement(labelAccout).isDisplayed();
-        }
+        driver.findElement(usernameField).sendKeys(username);
     }
+    //⚙️ Actions
+    public void enterPassword(String password) {
+        driver.findElement(passwordField).sendKeys(password);
+    }
+    // ⚙️ Actions
+    public void tapLogin() {
+        driver.findElement(loginButton).click();
+    }
+}

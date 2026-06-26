@@ -2,6 +2,8 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.PageFactoryFinder;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import screenShoot.ScreenshotUtils;
@@ -11,7 +13,7 @@ import java.time.Duration;
 public class LoginPage {
 
     //🔍 Driver
-    private AppiumDriver driver;
+    public AppiumDriver driver;
 
     // 🔍 Constructor
     public LoginPage(AppiumDriver driver) {
@@ -23,7 +25,6 @@ public class LoginPage {
     private By passwordField = By.id("com.sourcey.materialloginexample:id/input_password");
     private By loginButton = By.id("com.sourcey.materialloginexample:id/btn_login");
     public By labelAccout = By.id("com.sourcey.materialloginexample:id/link_signup");
-
 
 
     // ⚙️ Actions
