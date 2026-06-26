@@ -7,9 +7,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/main/resources/features/post_api_test.feature",
-        glue = {"steps"},
+        features = "src/main/resources/features/postApiTestPro.feature",
         tags = "@webLoginAdmin",
+        glue = {
+                "cucumberProSteps",
+                "hooks"
+        },
         plugin = {
                 "pretty",
                 "json:target/cucumber-reports/cucumber.json",

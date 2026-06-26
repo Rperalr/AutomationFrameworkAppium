@@ -32,7 +32,7 @@ public class BaseTest {
         options.setNoReset(true);
 
         driver = new AndroidDriver(url, options);
-        System.out.println("✅ Driver iniciado");
+        System.out.println(" Driver iniciado ✅");
     }
 
 
@@ -43,7 +43,7 @@ public class BaseTest {
 
         if (driver != null) {
             driver.quit();
-            System.out.println("✅ Driver cerrado");
+            System.out.println("Driver cerrado ✅");
         }
     }
 }

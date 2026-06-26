@@ -1,0 +1,17 @@
+<suite name="TestSuite - Proyecto Demo">
+    <test name="LoginTests">
+        <classes>
+            <class name="test.AppiumTestPOM"/>
+        </classes>
+    </test>
+    <test name="TestBasic">
+        <classes>
+            <class name="testBasic.AppiumTestNative"/>
+        </classes>
+    </test>
+    <test name="TestBasicWeb">
+        <classes>
+            <class name="testBasic.AppiumTestWeb"/>
+        </classes>
+    </test>
+</suite>

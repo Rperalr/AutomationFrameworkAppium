@@ -1,7 +1,0 @@
-<suite name="TestSuite - Proyecto Demo">
-    <test name="LoginTests">
-        <classes>
-            <class name="test.proyectoQA.test.TestLoginExample"/>
-        </classes>
-    </test>
-</suite>

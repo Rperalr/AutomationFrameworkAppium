@@ -1,6 +1,7 @@
 package steps;
 
 import baseTest.BaseTest;
+import cucumberProSteps.loginInputSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,29 +16,29 @@ public class LoginSteps extends BaseTest {
     @Given("que la aplicación móvil está abierta")
     public void que_la_aplicación_móvil_está_abierta() throws Exception {
         // Write code here that turns the phrase above into concrete actions
-        this.setUp();
+            this.setUp();
         System.out.println("app abierta ✅");
     }
     @When("ingreso el usuario {string}")
     public void ingreso_el_usuario(String username) {
         // Write code here that turns the phrase above into concrete actions
-        test = extent.createTest("login");
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsername(username);
+            test = extent.createTest("login");
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.enterUsername(username);
         System.out.println("user input ✅");
     }
     @And("ingreso el password {string}")
     public void ingreso_el_password(String password) {
         // Write code here that turns the phrase above into concrete actions
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterPassword(password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.enterPassword(password);
         System.out.println("user passwd ✅");
     }
     @And("doy clic en el botón login")
     public void doy_clic_en_el_botón_login() {
         // Write code here that turns the phrase above into concrete actions
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.tapLogin();
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.tapLogin();
         System.out.println("clic btn login ✅");
     }
     @Then("el login se ejecuta correctamenteen boton inicio sesion")
@@ -49,15 +50,16 @@ public class LoginSteps extends BaseTest {
     public void validar_label_de_la_cuenta() throws Exception {
         // Write code here that turns the phrase above into concrete actions
         LoginPage loginPage = new LoginPage(driver);
-        Assert.assertEquals("No account yet? Create one",driver.findElement(loginPage.labelAccout).getText(), "❌ El login no fue correcto");
-        System.out.println("Validando lbl cuenta ✅");
+            Assert.assertEquals("No account yet? Create one",driver.findElement(loginPage.labelAccout).getText(), "❌ El login no fue correcto");
+            System.out.println("Validando lbl cuenta ✅");
         ScreenshotUtils.takeScreenshot(driver,"loginAdmin");
     }
     @Then("cerrar app sesion")
     public void cerrar_app_sesion() throws Exception {
         // Write code here that turns the phrase above into concrete actions
-        this.tearDown();
         System.out.println("Test finalizado ✅");
+                this.tearDown();
+
     }
 }
 
