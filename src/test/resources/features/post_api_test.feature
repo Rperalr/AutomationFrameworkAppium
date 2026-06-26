@@ -4,7 +4,7 @@ Feature: Login en aplicación móvil
     Given que la aplicación móvil está abierta
 
   @webLoginAdmin
-  Scenario: Login exitoso en la aplicación
+  Scenario Outline: Login exitoso en la aplicación
     When ingreso el usuario "<usuario>"
     And ingreso el password "<password>"
     And doy clic en el botón login

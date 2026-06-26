@@ -5,12 +5,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
 
-public class loginInputSteps {
-    public AppiumDriver driver;
+public class loginInputSteps{
+
+    AppiumDriver driver;
 
     @When("ingreso el usuario {string}")
     public void ingreso_el_usuario(String usuario) {
-    LoginPage loginPage = new LoginPage(driver);
+
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterUsername(usuario);
 
         System.out.println("Usuario ingresado: " + usuario);

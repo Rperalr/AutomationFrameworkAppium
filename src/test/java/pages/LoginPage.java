@@ -16,7 +16,10 @@ public class LoginPage {
     public AppiumDriver driver;
 
     // 🔍 Constructor
-    public LoginPage(AppiumDriver driver) {
+    public LoginPage(AppiumDriver driver)
+    { if (driver == null) {
+
+    }else
         this.driver = driver;
     }
 
