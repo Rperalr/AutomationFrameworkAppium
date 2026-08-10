@@ -48,7 +48,7 @@ public class LoginPage {
         enterUsername(user);
         enterPassword(pass);
         tapLogin();
-        ScreenshotUtils.takeScreenshot(driver, "LoginAttempt");
+        ScreenshotUtils.takeScreenshot(driver, "Login");
         Assert.assertEquals("No account yet? Create one",driver.findElement(labelAccout).getText(), "❌ El login no fue correcto");
     }
 
