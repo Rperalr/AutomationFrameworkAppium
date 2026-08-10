@@ -14,7 +14,5 @@ Feature: Login en aplicación móvil
 
     Examples:
       | usuario | password   |
-      | QA      | Auto       |
-      | Admin   | Automation |
-      | Test    | 123456     |
+      | QA      | Automation |
 

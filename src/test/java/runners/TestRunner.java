@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features/post_api_test.feature",
+        features = "src/test/resources/features/loginValidate.feature",
         tags = "@webLoginAdmin",
         glue = {
                 "steps",
