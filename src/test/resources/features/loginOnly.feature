@@ -3,7 +3,7 @@ Feature: Login en aplicación móvil
   Background:
     Given que la aplicación móvil está abierta
 
-  @webLoginAdmin
+  @loginOnly
   Scenario: Login exitoso en la aplicación
     When ingreso el usuario "QA"
     And ingreso el password "Automation"
