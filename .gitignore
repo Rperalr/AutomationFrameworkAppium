@@ -11,8 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
-/evidences/
+/evidences
 /.idea
+/logs
 
 ### Eclipse ###
 .apt_generated
