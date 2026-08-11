@@ -10,4 +10,3 @@ Feature: Login en aplicación móvil
     And doy clic en el botón login
     Then el login se ejecuta correctamenteen boton inicio sesion
     Then validar label de la cuenta
-    Then cerrar app sesion

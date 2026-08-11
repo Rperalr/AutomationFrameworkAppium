@@ -13,15 +13,14 @@ import videoRecorder.VideoRecorder;
 
 public class BaseTest {
 
-    protected ExtentTest test;
-    protected ExtentReports extent;
-    protected AppiumDriver driver;
+    protected static ExtentTest test;
+    protected static ExtentReports extent;
+    protected static AppiumDriver driver;
 
     @BeforeMethod
     public void setUp() throws Exception {
-
         VideoRecorder.startRecording();
-            extent = ExtentManager.getExtent();
+        extent = ExtentManager.getExtent();
 
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
         UiAutomator2Options options = new UiAutomator2Options();
@@ -32,17 +31,20 @@ public class BaseTest {
         options.setNoReset(true);
 
         driver = new AndroidDriver(url, options);
-        System.out.println(" Driver iniciado ✅");
+        System.out.println("Driver iniciado ✅");
     }
-
 
     @AfterMethod
     public void tearDown() throws Exception {
         VideoRecorder.stopRecording();
+
+        if (extent != null) {
             extent.flush();
+        }
 
         if (driver != null) {
             driver.quit();
+            driver = null;
             System.out.println("Driver cerrado ✅");
         }
     }
