@@ -3,6 +3,7 @@ package baseTest;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import extentReportHtml.ExtentManager;
+import extentReportHtml.ExtentManagerInstance;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -11,11 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import videoRecorder.VideoRecorder;
 
-public class BaseTest {
-
-    protected static ExtentTest test;
-    protected static ExtentReports extent;
-    protected static AppiumDriver driver;
+public class BaseTest extends ExtentManagerInstance {
 
     @BeforeMethod
     public void setUp() throws Exception {

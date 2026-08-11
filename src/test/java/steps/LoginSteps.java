@@ -52,4 +52,11 @@ public class LoginSteps extends BaseTest {
         loginFlow().validateAccountLabel();
         System.out.println("Validando lbl cuenta ✅");
     }
+
+    @Then("login Succes usuario {string} y password {string}")
+    public void login_succees_usuario_string_y_password_string(String username, String password) {
+        loginFlow().login(username, password);
+        System.out.println("Validando lbl cuenta ✅");
+    }
+
 }

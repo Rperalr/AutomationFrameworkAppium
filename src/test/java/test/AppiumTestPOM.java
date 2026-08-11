@@ -12,8 +12,11 @@ public class AppiumTestPOM extends BaseTest {
         test = extent.createTest("Login Test1");
 
         try {
+
             LoginFlow loginFlow = new LoginFlow(driver);
+
             loginFlow.login("QA", "Automation");
+
             loginFlow.validateAccountLabel();
 
             System.out.println("Test ejecutado ✅");

@@ -2,6 +2,7 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import screenShoot.ScreenshotUtils;
 
 public class LoginPage {
 
@@ -18,14 +19,17 @@ public class LoginPage {
 
     public void enterUsername(String username) {
         driver.findElement(usernameField).sendKeys(username);
+        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
     }
 
     public void enterPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
+        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
     }
 
     public void tapLogin() {
         driver.findElement(loginButton).click();
+        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
     }
 
     public String getAccountLabelText() {
