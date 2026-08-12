@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class AppiumTestWeb {
 
-  private By btnHamburguer = By.id("hamburger-menu");
+  private By btnHamburguer = By.className("menu");
   private By llnkSite = By.xpath("//android.view.View[@content-desc=\"DEMO SITE\"]/android.widget.TextView");
   private By llnkLaptops = By.xpath("//android.view.View[@content-desc=\"Monitors\"]");
 
