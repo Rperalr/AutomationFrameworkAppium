@@ -1,65 +1,174 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.mave n.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>org.example</groupId>
     <artifactId>appium</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
     <name>appium</name>
 
-    <!--  ✅ CONFIGURACIÓN JAVA 11  -->
+    <!-- ====================================================== -->
+    <!-- CONFIGURACION GENERAL DEL PROYECTO                     -->
+    <!-- ====================================================== -->
     <properties>
+
+        <!-- Codificacion del proyecto -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- Version Java utilizada para compilar -->
+        <maven.compiler.release>11</maven.compiler.release>
+
+        <!-- Version Selenium -->
+        <selenium.version>4.21.0</selenium.version>
+
+        <!-- Version Cucumber -->
+        <cucumber.version>7.23.0</cucumber.version>
+
+        <!-- Version Maven Surefire -->
+        <surefire.version>3.5.4</surefire.version>
+
     </properties>
+
+
+    <!-- ====================================================== -->
+    <!-- CONFIGURACION MAVEN                                    -->
+    <!-- ====================================================== -->
     <build>
+
         <plugins>
 
-            <!--  ✅ FORZAR COMPILACIÓN EN JAVA 11  -->
+            <!-- ================================================== -->
+            <!-- MAVEN COMPILER                                    -->
+            <!-- Compila codigo Java utilizando Java 11            -->
+            <!-- ================================================== -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.14.1</version>
+
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <release>${maven.compiler.release}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+
+
+            <!-- ================================================== -->
+            <!-- MAVEN SUREFIRE                                    -->
+            <!-- Ejecuta pruebas con el comando: mvn clean test     -->
+            <!-- Soporta JUnit 4 y TestNG usados por el proyecto    -->
+            <!-- ================================================== -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+
+                <configuration>
+
+                    <!--
+                        Clases que Maven buscara automaticamente.
+
+                        Ejemplos actuales:
+                        AppiumTestPOM.java
+                        AppiumTestNative.java
+                        AppiumTestWeb.java
+                        TestRunner.java
+                    -->
+                    <includes>
+                        <include>**/AppiumTest*.java</include>
+                        <include>**/*Runner.java</include>
+                    </includes>
+
+                    <!--
+                        Evita que el proveedor TestNG intente
+                        interpretar nuevamente los tests JUnit.
+                    -->
+                    <properties>
+                        <property>
+                            <name>junit</name>
+                            <value>false</value>
+                        </property>
+                    </properties>
+
+                </configuration>
+
+                <!-- Proveedores para ejecutar JUnit y TestNG -->
+                <dependencies>
+
+                    <!-- Provider Maven para JUnit 4 -->
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${surefire.version}</version>
+                    </dependency>
+
+                    <!-- Provider Maven para TestNG -->
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-testng</artifactId>
+                        <version>${surefire.version}</version>
+                    </dependency>
+
+                </dependencies>
+
+            </plugin>
+
         </plugins>
+
     </build>
 
-    <!--  ✅ FORZAR VERSIONES SELENIUM (MUY IMPORTANTE)  -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>4.11.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
+    <!-- ====================================================== -->
+    <!-- DEPENDENCIAS DEL PROYECTO                              -->
+    <!-- ====================================================== -->
     <dependencies>
 
-        <!--  ✅ APPIUM (CON EXCLUSIÓN DE SELENIUM)  -->
+
+        <!-- ================================================== -->
+        <!-- APPIUM JAVA CLIENT                                -->
+        <!-- Permite automatizacion Mobile Android / iOS       -->
+        <!-- Se excluye Selenium para controlar su version     -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>9.2.2</version>
+
             <exclusions>
+
                 <exclusion>
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+
             </exclusions>
+
         </dependency>
 
-        <!--  ✅ SELENIUM CONTROLADO  -->
+
+        <!-- ================================================== -->
+        <!-- SELENIUM WEBDRIVER                                -->
+        <!-- Automatizacion Web y dependencia base de Appium   -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.21.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
-        <!--  ✅ TESTNG  -->
+
+        <!-- ================================================== -->
+        <!-- TESTNG                                            -->
+        <!-- Framework de ejecucion y assertions               -->
+        <!-- Utilizado por las pruebas basicas Appium          -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -67,24 +176,34 @@
             <scope>test</scope>
         </dependency>
 
-        <!--  ✅ JUNIT (solo uno, quitamos duplicado)  -->
+
+        <!-- ================================================== -->
+        <!-- JUNIT 4                                           -->
+        <!-- Utilizado para ejecutar el Runner de Cucumber      -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 
-        <!--  ✅  Extent Reports -->
-        <!--<Librerias de ExtenteReport File>-->
+
+        <!-- ================================================== -->
+        <!-- EXTENT REPORTS                                    -->
+        <!-- Generacion de reportes HTML                       -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.2</version>
         </dependency>
 
-        <!--  ✅ screenshot -->
-        <!-- Source: https://mvnrepository.com/artifact/com.github.yev/screenshot -->
+
+        <!-- ================================================== -->
+        <!-- SCREENSHOT                                        -->
+        <!-- Soporte para captura de evidencias                -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>com.github.yev</groupId>
             <artifactId>screenshot</artifactId>
@@ -92,47 +211,68 @@
             <scope>compile</scope>
         </dependency>
 
-        <!--  ✅ screen-recorder -->
-        <!-- https://mvnrepository.com/artifact/com.github.stephenc.monte/monte-screen-recorder -->
+
+        <!-- ================================================== -->
+        <!-- MONTE SCREEN RECORDER                             -->
+        <!-- Grabacion de video durante las pruebas            -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>com.github.stephenc.monte</groupId>
             <artifactId>monte-screen-recorder</artifactId>
             <version>0.7.7.0</version>
         </dependency>
 
-        <!--  ✅ log4j12 -->
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j -->
-        <dependency>
 
+        <!-- ================================================== -->
+        <!-- SLF4J LOG4J                                       -->
+        <!-- Adaptador de logging                              -->
+        <!-- ================================================== -->
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.2</version>
         </dependency>
 
-        <!--  ✅ log4j -->
-        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+
+        <!-- ================================================== -->
+        <!-- LOG4J                                             -->
+        <!-- Implementacion utilizada para logs del proyecto   -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <!--  Cucumber  -->
+
+
+        <!-- ================================================== -->
+        <!-- CUCUMBER JAVA                                     -->
+        <!-- Definiciones Given / When / Then y Hooks          -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.23.0</version>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
+
+
+        <!-- ================================================== -->
+        <!-- CUCUMBER JUNIT                                    -->
+        <!-- Permite ejecutar Cucumber mediante JUnit Runner   -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.19.0</version>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>compile</scope>
-        </dependency>
+
+
+        <!-- ================================================== -->
+        <!-- JETBRAINS ANNOTATIONS                             -->
+        <!-- Anotaciones auxiliares para Java / IDE            -->
+        <!-- ================================================== -->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -140,5 +280,7 @@
             <scope>compile</scope>
         </dependency>
 
+
     </dependencies>
+
 </project>
