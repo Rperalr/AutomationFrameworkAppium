@@ -1,5 +1,6 @@
 package testBasic;
 
+import extentReportHtml.ExtentManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -12,8 +13,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import screenShoot.ScreenshotUtils;
+import videoRecorder.VideoRecorder;
 
-public class AppiumTestWeb {
+public class AppiumTestWeb extends ExtentManager {
 
   private By btnHamburguer = By.className("menu");
   private By llnkSite = By.xpath("//android.view.View[@content-desc=\"DEMO SITE\"]/android.widget.TextView");
@@ -23,8 +26,9 @@ public class AppiumTestWeb {
 
 
     @BeforeMethod
-    public void setUp() throws MalformedURLException {
-
+    public void setUp() throws Exception {
+        VideoRecorder.startRecording();
+        startReport();
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
 
         UiAutomator2Options options = new UiAutomator2Options();
@@ -49,17 +53,25 @@ public class AppiumTestWeb {
     @Test
     public void testOpenSettings() throws InterruptedException {
 
+        try{
+        startTest("Test de datos en la app");
         String expectedTitle = "Tools QA";
         String actualTitle = driver.getTitle();
         WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
         driver.findElement(btnHamburguer).click();
         Assert.assertEquals(actualTitle, expectedTitle, "❌ El título no es correcto");
         System.out.println("Test ejecutado ✅");
-
+        pass("Inyección fue exitosa");
+        } catch (Exception e) {
+            fail("Inyección falló: " + e.getMessage());
+        }
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown() throws Exception {
+        VideoRecorder.stopRecording();
+        endReport();
         if (driver != null) {
             driver.quit();
             System.out.println("Driver cerrado ✅");
