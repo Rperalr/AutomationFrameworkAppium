@@ -40,7 +40,7 @@ public class AppiumTestWeb {
 
         driver = new AndroidDriver(url, options);
 
-        driver.get("https://www.toolsqa.com/");
+        driver.get("https://demo.guru99.com/test/newtours/register.php");
 
         System.out.println("✅ Web abierta");
 
