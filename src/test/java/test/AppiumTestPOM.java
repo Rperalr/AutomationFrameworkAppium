@@ -9,9 +9,9 @@ public class AppiumTestPOM extends BaseTest {
 
     @Test
     public void testAppium() {
-        test = extent.createTest("Login Test1");
 
         try {
+            startTest("Inyección de datos en la app");
 
             LoginFlow loginFlow = new LoginFlow(driver);
 
@@ -19,10 +19,9 @@ public class AppiumTestPOM extends BaseTest {
 
             loginFlow.validateAccountLabel();
 
-            System.out.println("Test ejecutado ✅");
-            test.log(Status.PASS, "Inyección fue exitosa");
+            pass("Login realizado con éxito");
         } catch (Exception e) {
-            test.log(Status.FAIL, "Inyección falló: " + e.getMessage());
+            fail("Error durante la ejecución del test: " + e.getMessage());
         }
     }
 }

@@ -8,7 +8,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ExtentManager extends ExtentManagerInstance {
+public class ExtentManager extends ExtentManagerReport {
 
         public static String TIME_STAMP = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
         public static String PATH_REPORT = "./evidences/ExternRepotHTML/";
