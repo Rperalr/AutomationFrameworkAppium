@@ -9,15 +9,17 @@ public class AppiumTestPOM extends BaseTest {
 
     @Test
     public void testAppium() {
-        test = extent.createTest("Login Test1");
 
+        test = extent.createTest("Login Test1");
         try {
 
             LoginFlow loginFlow = new LoginFlow(driver);
 
-            loginFlow.login("QA", "Automation");
+            loginFlow.enterUsername("test");
 
-            loginFlow.validateAccountLabel();
+            loginFlow.enterPassword("123456");
+
+            loginFlow.tapLogin();
 
             System.out.println("Test ejecutado ✅");
             test.log(Status.PASS, "Inyección fue exitosa");
