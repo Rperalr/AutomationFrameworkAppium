@@ -29,7 +29,6 @@ public class BaseTest extends ExtentManagerReport {
              endReport();
         if (driver != null) {
             driver.quit();
-            driver = null;
             System.out.println("Driver cerrado ✅");
         }
     }

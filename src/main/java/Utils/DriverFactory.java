@@ -17,7 +17,9 @@ public class DriverFactory extends ExtentManagerInstance {
         options.setDeviceName("emulator-5554");
         options.setAutomationName("UiAutomator2");
         options.setApp("C:\\Users\\rperaltr\\OneDrive - NTT DATA EMEAL\\Documentos\\apk\\LoginExample.apk");
-        options.setNoReset(true);
+        options.setCapability("appium:noReset", true);
+        options.setCapability("appium:forceAppLaunch", true);
+        options.setCapability("appium:shouldTerminateApp", true);
 
         driver = new AndroidDriver(url, options);
         System.out.println("Driver iniciado ✅");
