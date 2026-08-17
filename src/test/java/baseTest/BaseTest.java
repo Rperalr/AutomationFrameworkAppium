@@ -1,5 +1,6 @@
 package baseTest;
 
+import Utils.DriverFactory;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import extentReportHtml.ExtentManager;
@@ -19,24 +20,13 @@ public class BaseTest extends ExtentManagerReport {
     public void setUp() throws Exception {
         VideoRecorder.startRecording();
             startReport();
-
-        URL url = new URL("http://127.0.0.1:4723/wd/hub");
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
-        options.setAutomationName("UiAutomator2");
-        options.setApp("C:\\Users\\rperaltr\\OneDrive - NTT DATA EMEAL\\Documentos\\apk\\LoginExample.apk");
-        options.setNoReset(true);
-
-        driver = new AndroidDriver(url, options);
-        System.out.println("Driver iniciado ✅");
+        DriverFactory.createDriver();
     }
 
     @AfterMethod
     public void tearDown() throws Exception {
         VideoRecorder.stopRecording();
              endReport();
-
         if (driver != null) {
             driver.quit();
             driver = null;
