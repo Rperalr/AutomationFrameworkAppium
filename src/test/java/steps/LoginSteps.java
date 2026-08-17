@@ -25,7 +25,7 @@ public class LoginSteps extends BaseTest {
 
     @When("ingreso el usuario {string}")
     public void ingreso_el_usuario(String username) {
-        test = extent.createTest("login");
+        startTest("Ingreso de usuario");
         loginFlow().enterUsername(username);
         System.out.println("user input ✅");
     }

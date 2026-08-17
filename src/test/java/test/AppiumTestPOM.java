@@ -9,13 +9,17 @@ public class AppiumTestPOM extends BaseTest {
 
     @Test
     public void testAppium() {
-
         try {
+
             startTest("Inyección de datos en la app");
 
             LoginFlow loginFlow = new LoginFlow(driver);
 
-            loginFlow.login("QA", "Automation");
+            loginFlow.enterUsername("testuser");
+
+            loginFlow.enterPassword("password123");
+
+            loginFlow.tapLogin();
 
             loginFlow.validateAccountLabel();
 

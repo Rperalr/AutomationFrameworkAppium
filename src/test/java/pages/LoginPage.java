@@ -19,17 +19,17 @@ public class LoginPage {
 
     public void enterUsername(String username) {
         driver.findElement(usernameField).sendKeys(username);
-        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
+        ScreenshotUtils.takeScreenshot(driver, "enterUsername");
     }
 
     public void enterPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
-        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
+        ScreenshotUtils.takeScreenshot(driver, "enterPassword");
     }
 
     public void tapLogin() {
         driver.findElement(loginButton).click();
-        ScreenshotUtils.takeScreenshot(driver, "loginAdmin");
+        ScreenshotUtils.takeScreenshot(driver, "tapLogin");
     }
 
     public String getAccountLabelText() {
