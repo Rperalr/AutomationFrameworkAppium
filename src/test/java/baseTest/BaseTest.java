@@ -19,7 +19,7 @@ public class BaseTest extends ExtentManagerInstance {
         VideoRecorder.startRecording();
         extent = ExtentManager.getExtent();
 
-        URL url = new URL("http://127.0.0.1:4723/wd/hub");
+        URL url = new URL("http://127.0.0.1:4723");
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
         options.setDeviceName("emulator-5554");
